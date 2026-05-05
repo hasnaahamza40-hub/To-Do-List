@@ -7,7 +7,7 @@ body{
 .parent1{
     /* display: flex; */
     align-items: center;
-    width: 600px;
+    width: 650px;
     background-color: rgb(122, 56, 128);
     color: aliceblue;
     font-size: 25px;

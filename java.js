@@ -54,50 +54,60 @@ let btn= document.getElementById("bn");
 let ul= document.querySelector(".parent");
 let div= document.querySelector(".par");
 
-btn.addEventListener("click" , function (e) {
+    btn.addEventListener("click" , function (e) {
+
     let li = document.createElement("li");
     let span = document.createElement("span");
     let h3 = document.createElement("h3");
     let h4 = document.createElement("h4");
-    let but=document.createElement("button");
-    let butto=document.createElement("button");
-    let val = document.createElement("button"); //✅
-    let val2 = document.createElement("button"); //✅
+    let removebtn=document.createElement("button");
+    let editbtn=document.createElement("button");
+    let doneBtn = document.createElement("button"); //✅
+    let cancelBtn = document.createElement("button"); //✅
+
     span.textContent= input.value;
 
+    removebtn.textContent="remove";
+    editbtn.textContent="Edit";
+    doneBtn.textContent="done"; //✅
+    cancelBtn.textContent="cancle";
+
     Toastify({
-  text: "Success",
-  gravity: "top",
-  position: "center"
-}).showToast();
+     text: "Success",
+     gravity: "top",
+     position: "center"
+    }).showToast();
 
     li.style.backgroundColor = "pink";
-     div.appendChild(h3);
+
     li.appendChild(span);
+    h4.appendChild(removebtn);
+    h4.appendChild(editbtn);
+    h3.appendChild(doneBtn); //✅
+    h3.appendChild(cancelBtn); //✅
     li.appendChild(h4);
-    h4.appendChild(but);
-    h4.appendChild(butto);
+    div.appendChild(h3);
     ul.appendChild(li);
 
-    but.addEventListener("click", function () {
+     h3.style.display = "none";
+    removebtn.addEventListener("click", function () {
      li.remove();
-        Toastify({
-  text: "Removed",
-  gravity: "top",
-  position: "center",
-}).showToast();
+     h3.remove(); //
+     Toastify({
+       text: "Removed",
+       gravity: "top",
+       position: "center",
+     }).showToast();
 });
 
-   butto.addEventListener("click", function () {
+   editbtn.addEventListener("click", function () {
     input.focus(); //✅
     btn.style.display= "none"; //✅
     h3.style.display="inline"; //✅
-  
-    h3.appendChild(val); //✅
-    h3.appendChild(val2); //✅
+    // input.value= span.textContent; //✅
+});
 
-     val.textContent="done"; //✅
-     val.addEventListener("click", function () { //✅
+     doneBtn.addEventListener("click", function () { //✅
       span.textContent= input.value; //✅
          Toastify({
           text: "Edited",
@@ -107,17 +117,14 @@ btn.addEventListener("click" , function (e) {
       input.value="";
       h3.style.display="none"; //✅
       btn.style.display= "inline"; //✅
+      console.log("done?");
+      
      });
      
-    val2.textContent="cancle";
-    val2.addEventListener("click", function () {
+    cancelBtn.addEventListener("click", function () {
       input.value="";
       h3.style.display="none"; //✅
       btn.style.display= "inline"; //✅
      });
-  
-});
-    but.textContent="remove";
-    butto.textContent="Edit";
     input.value="";
 });
