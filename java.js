@@ -56,6 +56,17 @@ let div= document.querySelector(".par");
 
     btn.addEventListener("click" , function (e) {
 
+    if (input.value.trim() === "") {
+
+        Toastify({
+            text: "Please enter a task",
+            gravity: "top",
+            position: "right"
+        }).showToast();
+
+        return;
+    }
+
     let li = document.createElement("li");
     let span = document.createElement("span");
     let h3 = document.createElement("h3");
@@ -65,7 +76,7 @@ let div= document.querySelector(".par");
     let doneBtn = document.createElement("button"); //✅
     let cancelBtn = document.createElement("button"); //✅
 
-    span.textContent= input.value;
+    span.textContent= input.value.trim();
 
     removebtn.textContent="remove";
     editbtn.textContent="Edit";
@@ -98,17 +109,21 @@ let div= document.querySelector(".par");
        gravity: "top",
        position: "center",
      }).showToast();
+    // btn.disabled = false;
 });
 
    editbtn.addEventListener("click", function () {
     input.focus(); //✅
+    removebtn.disabled= true;
     btn.style.display= "none"; //✅
     h3.style.display="inline"; //✅
-    // input.value= span.textContent; //✅
+    input.value= span.textContent; //✅
+    // btn.disabled= true;
 });
 
      doneBtn.addEventListener("click", function () { //✅
       span.textContent= input.value; //✅
+      removebtn.disabled = false;
          Toastify({
           text: "Edited",
           gravity: "top",
@@ -125,6 +140,7 @@ let div= document.querySelector(".par");
       input.value="";
       h3.style.display="none"; //✅
       btn.style.display= "inline"; //✅
+      removebtn.disabled = false;
      });
     input.value="";
 });
